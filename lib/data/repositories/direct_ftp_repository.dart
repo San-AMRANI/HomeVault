@@ -18,6 +18,7 @@ class DirectFtpRepository implements NasRepository {
       pass: settings.password,
       timeout: 15,
       transferMode: TransferMode.passive,
+      listCommand: ListCommand.list,
       showLog: false,
     );
     final connected = await client.connect();

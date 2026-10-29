@@ -93,7 +93,8 @@ class HomeVaultController extends ChangeNotifier {
     try {
       await repository.connect(ConnectionSettings(host: settings.host, port: settings.port, username: settings.username, password: password));
       connected = true;
-      await browse('/');
+      entries = await repository.listDirectory('/');
+      currentPath = '/';
       if (persist) await storage.writeSettings(settings, password);
       status = 'Connected to local NAS';
       return true;
